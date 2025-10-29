@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-smart-canteen-key-change-in-production'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://at-table-backend.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
