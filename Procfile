@@ -1,1 +1,1 @@
-web: gunicorn attable.wsgi
+web: gunicorn at-table-backend.wsgi
