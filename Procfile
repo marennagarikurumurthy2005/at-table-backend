@@ -1,1 +1,1 @@
-web: gunicorn at-table-backend.wsgi
+web: gunicorn resto.wsgi
