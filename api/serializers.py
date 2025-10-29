@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MenuItem, Order, OrderItem, Payment
+from .models import MenuItem, Order, OrderItem, Payment, User
 
 # ---------- MENU ITEMS ----------
 class MenuItemSerializer(serializers.ModelSerializer):
@@ -63,3 +63,8 @@ class PaymentCreateSerializer(serializers.Serializer):
     transaction_id = serializers.CharField(max_length=100)
     payment_method = serializers.CharField(max_length=20)
     amount = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields='__all__'

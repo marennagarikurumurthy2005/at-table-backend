@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import MenuItem, Order, OrderItem, Payment
+from django.contrib.auth.admin import UserAdmin
+from .models import User
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
@@ -22,3 +24,7 @@ class PaymentAdmin(admin.ModelAdmin):
     list_display = ('transaction_id', 'order', 'amount', 'status', 'created_at')
     list_filter = ('status', 'created_at')
     search_fields = ('transaction_id', 'order__order_id')
+
+
+
+admin.site.register(User, UserAdmin)
