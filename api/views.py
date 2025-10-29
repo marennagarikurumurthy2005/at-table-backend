@@ -127,14 +127,25 @@ def admin_dashboard(request):
     total_orders = Order.objects.count()
     today_orders = Order.objects.filter(created_at__date=today).count()
     total_revenue = Order.objects.aggregate(Sum('total_amount'))['total_amount__sum'] or 0
-    popular_items = OrderItem.objects.values('menu_item__name').annotate(count=Count('id')).order_by('-count')[:5]
+
+    pending_orders = Order.objects.filter(status__iexact='pending').count()
+    completed_orders = Order.objects.filter(status__iexact='completed').count()
+
+    popular_items = (
+        OrderItem.objects.values('menu_item__name')
+        .annotate(count=Count('id'))
+        .order_by('-count')[:5]
+    )
 
     return Response({
         'total_orders': total_orders,
         'today_orders': today_orders,
         'total_revenue': float(total_revenue),
+        'pending_orders': pending_orders,
+        'completed_orders': completed_orders,
         'popular_items': list(popular_items),
     })
+
 
 
 @api_view(['GET'])
